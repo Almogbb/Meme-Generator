@@ -19,7 +19,7 @@ const memesSentences = [
 
 var gImageCounter = 1;
 var gImages;
-var gMemes;
+// var gMemes;
 createImages()
 
 // var gImg = [{
@@ -28,29 +28,36 @@ createImages()
 //     keywords: ['funny', 'dog']
 // }]
 
-// var gMeme = {
-//     selectedImgId: 5,
-//     line: getRandomLine(),
+var gMeme = {
+    selectedImgId: 5,
+    line: getRandomSentence(),
 
-//     lines: [{
-//         size: 16,
-//         align: 'left',
-//         color: 'red'
-//     }]
+    lines: [{
+        size: 16,
+        align: 'center',
+        color: 'red'
+    }]
+}
+
+function createMeme(elImg) {
+    gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height);
+}
+
+// function getImageById(elImg) {
+//     console.log(elImg);
+//     var image = gImages.find(image => image.id === elImg)
+
+//     console.log(image);
+//     return image;
 // }
 
-// function createMeme() {
-//     let img = randomImage();
-//     console.log(img);
-//     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
-// }
+function getImageByData(elImg) {
+    var img = gImages.find(image => image.id === elImg.dataset.img);
 
-function getImageById(imgId) {
-    const img = gImages.find(image => imgId === image.id);
     return img;
 }
 
-function getRandomLine() {
+function getRandomSentence() {
     let idx = Math.trunc(getRandomInt(1, memesSentences.length));
     return memesSentences[idx]
 }
@@ -69,28 +76,33 @@ function getImgIdx() {
 //     // return memesSentences[idx]
 // }
 
-function createMemes(elImg) {
-    let memes = [];
+// function createMemes(id) {
+//     let memes = [];
 
-    for (let i = 0; i < 1; i++) {
-        memes.push(createMeme(elImg))
-    }
-    gMemes = memes;
-}
+//     for (let i = 0; i < 1; i++) {
+//         memes.push(createMeme(id))
+//     }
+//     gMemes = memes;
+// }
 
-function createMeme(elImg) {
+// function createMeme(id) {
 
-    return {
-        selectedImgId: elImg.id,
-        line: getRandomLine(),
+//     const meme = {
+//         selectedImgId: id.id,
+//         line: getRandomLine(),
 
-        lines: [{
-            size: 16,
-            align: 'left',
-            color: 'red'
-        }]
-    }
-}
+//         lines: [{
+//             size: 16,
+//             align: 'left',
+//             color: 'red'
+//         }]
+//     }
+// }
+
+
+
+
+
 
 function createImages() {
     var images = [];
@@ -118,6 +130,9 @@ function getImages() {
     return gImages;
 }
 
+function getMeme() {
+    return gMeme;
+}
 
 
 ////////////// FOR UPLOAD /////////////////////////
