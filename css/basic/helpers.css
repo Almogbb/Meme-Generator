@@ -1,0 +1,43 @@
+/* flex */
+
+.flex {
+    display: flex;
+}
+
+.flex.space-between {
+    justify-content: space-between;
+}
+
+.flex.align-center {
+    align-items: center;
+}
+
+
+/* list */
+
+/* .clean-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+} */
+
+
+/* color */
+
+/* .dark-bg {
+    background-color: var(--clr4);
+} */
+
+.line{
+    text-align: center;
+    font-weight: bold;
+    border-radius: 20px;
+    height: 50px;
+    font-size: 1.25em ;
+}
+
+.btn{
+    font-size: 1em;
+    
+}
+

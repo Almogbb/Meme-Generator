@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Meme Generator</title>
+</head>
+
+<body onload="init()">
+
+    <section class="grid-page">
+
+        <header class="header-container">
+            <div class="main-layout">
+
+                <h1>Sprint 2</h1>
+            </div>
+        </header>
+
+        <main class="main main-layout">
+
+            <div class="edit-canvas flex">
+                <div class="editor">
+                    <input class="meme-line line" type="text" placeholder="Enter your line">
+                    <div class="btn-row">
+                        <button class="btn" onclick="clearCanvas()">Switch</button>
+                        <button class="btn" onclick="clearCanvas()">Add Line</button>
+                        <button class="btn" onclick="clearCanvas()">Clear</button>
+                    </div>
+
+                    <div class="meme-tools">
+                        <button class="btn">bigger font</button>
+                        <button class="btn">smaller font</button>
+                        <button class="btn">left</button>
+                        <button class="btn">center</button>
+                        <button class="btn">right</button>
+                    </div>
+
+                </div>
+                <canvas class="my-canvas" height="700" width="700"></canvas>
+            </div>
+
+            <section class="gallery-container">
+
+                <input type="text" placeholder="search">
+                <button class="btn" onclick="randomMeme()">Quick Meme</button>
+                <section class="meme-images">
+                    <!-- <div class="meme-option">
+                        <img data-img="1" class="image" src="/meme-imgs-square/1.jpg" onclick="onImgClick(this)">
+                    </div>
+                    <div class="meme-option">
+                        <img data-img="2" class="image" src="/meme-imgs-square/2.jpg" onclick="onImgClick(this)">
+                    </div>
+                    <div class="meme-option">
+                        <img data-img="3" class="image" src="/meme-imgs-square/3.jpg" onclick="onImgClick(this)">
+                    </div>
+                    <div class="meme-option">
+                        <img data-img="4" class="image" src="/meme-imgs-square/4.jpg" onclick="onImgClick(this)">
+                    </div>
+                    <div class="meme-option">
+                        <img data-img="5" class="image" src="/meme-imgs-square/5.jpg" onclick="onImgClick(this)">
+                    </div>
+                    <div class="meme-option">
+                        <img data-img="6" class="image" src="/meme-imgs-square/6.jpg" onclick="onImgClick(this)">
+                    </div>
+                    <div class="meme-option">
+                        <img data-img="7" class="image" src="/meme-imgs-square/7.jpg" onclick="onImgClick(this)">
+                    </div>
+                    <div class="meme-option">
+                        <img data-img="8" class="image" src="/meme-imgs-square/8.jpg" onclick="onImgClick(this)">
+                    </div>
+                    <div class="meme-option">
+                        <img data-img="9" class="image" src="/meme-imgs-square/9.jpg" onclick="onImgClick(this)">
+                    </div>
+                    <div class="meme-option">
+                        <img data-img="10" class="image" src="/meme-imgs-square/10.jpg" onclick="onImgClick(this)">
+                    </div>
+                    <div class="meme-option">
+                        <img data-img="11" class="image" src="/meme-imgs-square/11.jpg" onclick="onImgClick(this)">
+                    </div> -->
+                </section>
+            </section>
+        </main>
+
+        <footer></footer>
+
+
+
+    </section>
+    <script src="js/services/storage-service.js"></script>
+    <script src="js/services/utils-service.js"></script>
+    <script src="js/services/meme-service.js"></script>
+    <script src="js/main-controller.js"></script>
+</body>
+
+</html>
