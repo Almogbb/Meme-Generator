@@ -35,21 +35,14 @@ var gMeme = {
         color: 'red',
         font: 'Arial',
         strokeColor: 'black',
-        location: { x: 150, y: 150 }
+        location: { x: 250, y: 150 }
     }]
 }
 const gCurrLine = gMeme.selectedLineIdx;
 
 /////////////////////////////////////////////////////////////////////////
 
-
-
-
-
 function getNewLine() {
-    if (gMeme.selectedLineIdx > 2) return;
-    //position in gMeme
-    const posY = gIsSecondLine ? (400) : (150);
 
     gMeme.lines.length === 0 ? gMeme.selectedLineIdx++ : gMeme.selectedLineIdx === 0;
     gMeme.lines.push({
@@ -60,60 +53,46 @@ function getNewLine() {
         color: 'black',
         font: 'Arial',
         strokeColor: 'black',
-        location: { x: 400, y: posY }
+        location: { x: 400, y: 400 }
     })
     gMeme.selectedLineIdx = gMeme.lines.length - 1;
     gIsSecondLine = true
-    // console.log(gMeme.selectedLineIdx);
-    console.log(MEME);
-
-
 }
 
 function removeLine() {
-    if (!gMeme.selectedLineIdx) return;
 
-    gMeme.lines.splice(gMeme.selectedLineIdx, 1);
+    gMeme.lines.splice(gMeme.length - 1, 1);
     gMeme.selectedLineIdx--;
-    var removeElement = document.querySelector('.meme-line2')
+    var removeElement = document.querySelector('.meme-line-1');
     if (removeElement) removeElement.remove();
-    // console.log(gMeme.selectedLineIdx);
-    // console.log(MEME);
 }
-
-
-
-
 
 ///////////////////////////////////////////////////////////////////////
 
-
-
-
 function setLineText(textInput) {
-    gMeme.lines[gCurrLine].text = textInput;
+    gMeme.lines[gMeme.selectedLineIdx].text = textInput;
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
 }
 
 function setFontColor(val) {
-    gMeme.lines[gCurrLine].color = val;
+    gMeme.lines[gMeme.selectedLineIdx].color = val;
 }
 
 function setStrokeColor(val) {
-    gMeme.lines[gCurrLine].strokeColor = val;
+    gMeme.lines[gMeme.selectedLineIdx].strokeColor = val;
 }
 
 function setFontSizeInc() {
-    gMeme.lines[gCurrLine].size++;
+    gMeme.lines[gMeme.selectedLineIdx].size++;
 }
 
 function setFontSizeDec() {
-    gMeme.lines[gCurrLine].size--;
+    gMeme.lines[gMeme.selectedLineIdx].size--;
 }
 
 function setLocation(pos) {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
-    gMeme.lines[gCurrLine].align = pos;
+    gMeme.lines[gMeme.selectedLineIdx].align = pos;
     renderMeme(gMeme.selectedImgId);
 }
 
@@ -129,7 +108,8 @@ function createImages() {
 function createImage() {
     return {
         id: makeId(),
-        url: `../../img/${gImageCounter++}.jpg`,
+        url: `img/${gImageCounter++}.jpg`,
+        // url: `../../img/${gImageCounter++}.jpg`,
         // keywords: ['funny', 'dog']
     }
 }

@@ -10,19 +10,29 @@ function renderImages() {
     })
     const elDiv = document.querySelector('.meme-images');
 
-    elDiv.innerHTML = strHTML.join('')
-    console.log(images);
+    elDiv.innerHTML = strHTML.join('');
 }
 
 
 function onImgClick(id) {
-    // const elGallery = document.querySelector('.gallery-container');
-    // elGallery.style.display = 'none';
+    const elGallery = document.querySelector('.gallery-container');
+    elGallery.style.display = 'none';
 
-    // //to do clear placeholder
+    //to do clear placeholder
 
-    // const elEdit = document.querySelector('.edit-canvas');
-    // elEdit.style.display = 'block'
+    const elEdit = document.querySelector('.edit-canvas');
+    elEdit.style.display = 'block'
 
     renderMeme(id)
+}
+
+function onGallery() {
+    const elGallery = document.querySelector('.gallery-container');
+    elGallery.style.display = 'block';
+
+    const elEdit = document.querySelector('.edit-canvas');
+    elEdit.style.display = 'none'
+
+    onClearCanvas();
+
 }
