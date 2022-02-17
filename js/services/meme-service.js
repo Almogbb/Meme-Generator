@@ -129,7 +129,7 @@ function createImages() {
 function createImage() {
     return {
         id: makeId(),
-        url: `img/${gImageCounter++}.jpg`,
+        url: `../../img/${gImageCounter++}.jpg`,
         // keywords: ['funny', 'dog']
     }
 }

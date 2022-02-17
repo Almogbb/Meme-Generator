@@ -146,11 +146,11 @@ function onRemoveLine() {
 
 
 
-// function reRenderCanvas() {
-//     renderImgCanvas(meme.selectedImgId);
-//     document.querySelector('[name="meme-text"]').value = meme.lines[meme.selectedLineIdx].txt;
-//     meme.lines.forEach(line => {
-//         writeText(line);
+// function updateCanvas() {
+//     renderMeme(meme.selectedImgId);
+//     document.querySelector('[name="meme-line"]').value = MEME.lines[meme.selectedLineIdx].text;
+//     MEME.lines.forEach(line => {
+//         drawText(line);
 //     })
 // }
 /////////////////////////////////////////////////////////////////////////////////
