@@ -23,20 +23,25 @@
         <main class="main main-layout">
 
             <div class="edit-canvas flex">
+                <!-- style="display: none" -->
                 <div class="editor">
-                    <input class="meme-line line" type="text" placeholder="Enter your line">
+                    <input name="INPUT" class="meme-line-0 line" type="text" placeholder="Enter your line">
+
                     <div class="btn-row">
-                        <button class="btn" onclick="clearCanvas()">Switch</button>
-                        <button class="btn" onclick="clearCanvas()">Add Line</button>
+                        <button class="btn" onclick="onSwitchText()">Switch</button>
+                        <button class="btn" onclick="onAddLine()">Add Line</button>
+                        <button class="btn" onclick="removeLine()">Remove Line</button>
                         <button class="btn" onclick="clearCanvas()">Clear</button>
                     </div>
 
                     <div class="meme-tools">
-                        <button class="btn">bigger font</button>
-                        <button class="btn">smaller font</button>
-                        <button class="btn">left</button>
-                        <button class="btn">center</button>
-                        <button class="btn">right</button>
+                        <input type="color" name="font-color" oninput="onFontColorChange(this.value)">
+                        <button class="btn" onclick="onFontSizeInc()">bigger font</button>
+                        <button class="btn" onclick="onFontSizeInc3D()">bigger font 3D</button>
+                        <button class="btn" onclick="onFontSizeDec()">smaller font</button>
+                        <button class="btn" onclick="onTextLocation('left')">left</button>
+                        <button class="btn" onclick="onTextLocation('center')">center</button>
+                        <button class="btn" onclick="onTextLocation('right')">right</button>
                     </div>
 
                 </div>
@@ -61,8 +66,8 @@
     <script src="js/services/storage-service.js"></script>
     <script src="js/services/utils-service.js"></script>
     <script src="js/services/meme-service.js"></script>
-    <script src="js/main-controller.js"></script>
     <script src="js/gallery-controller.js"></script>
+    <script src="js/meme-controller.js"></script>
 </body>
 
 </html>
