@@ -1,4 +1,5 @@
 'use strict'
+
 const memesSentences = [
     'I never eat falafel',
     'DOMS DOMS EVERYWHERE',
@@ -6,103 +7,115 @@ const memesSentences = [
     'Armed in knowledge',
     'Js error "Unexpected String"',
     'One does not simply write js',
-    'I`m a simple man i see vanilla JS, i click like!',
-    'JS, HTML,CSS?? Even my momma can do that',
+    'I want to have fun again!!',
+    'I want my BOBO',
     'May the force be with you',
     'I know JS',
-    'JS Where everything is made up and the rules dont matter',
-    'Not sure if im good at programming or good at googling',
+    'everyone',
+    'I like butter',
     'But if we could',
     'JS what is this?',
-    'Write hello world , add to cv 7 years experienced',
+    'I lost all my hobbies',
 ];
+
 
 var gImageCounter = 1;
 var gImages;
-// var gMemes;
+var gIsSecondLine = false;
 createImages()
-
-// var gImg = [{
-//     id: 1,
-//     url: '',
-//     keywords: ['funny', 'dog']
-// }]
-
 var gMeme = {
     selectedImgId: 5,
-    line: getRandomSentence(),
+    selectedLineIdx: 0,
 
     lines: [{
-        size: 16,
+        text: 'I like butter',
+        size: 32,
+        lineWidth: 1,
         align: 'center',
-        color: 'red'
+        color: 'red',
+        font: 'Arial',
+        strokeColor: 'black',
+        location: { x: 150, y: 150 }
     }]
 }
+const gCurrLine = gMeme.selectedLineIdx;
 
-function createMeme(elImg) {
-    gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height);
+/////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+function getNewLine() {
+    if (gMeme.selectedLineIdx > 2) return;
+    //position in gMeme
+    const posY = gIsSecondLine ? (400) : (150);
+
+    gMeme.lines.length === 0 ? gMeme.selectedLineIdx++ : gMeme.selectedLineIdx === 0;
+    gMeme.lines.push({
+        text: 'I want my BOBO',
+        size: 32,
+        lineWidth: 1,
+        align: 'center',
+        color: 'black',
+        font: 'Arial',
+        strokeColor: 'black',
+        location: { x: 400, y: posY }
+    })
+    gMeme.selectedLineIdx = gMeme.lines.length - 1;
+    gIsSecondLine = true
+    // console.log(gMeme.selectedLineIdx);
+    console.log(MEME);
+
+
 }
 
-// function getImageById(elImg) {
-//     console.log(elImg);
-//     var image = gImages.find(image => image.id === elImg)
+function removeLine() {
+    if (!gMeme.selectedLineIdx) return;
 
-//     console.log(image);
-//     return image;
-// }
-
-function getImageByData(elImg) {
-    var img = gImages.find(image => image.id === elImg.dataset.img);
-
-    return img;
-}
-
-function getRandomSentence() {
-    let idx = Math.trunc(getRandomInt(1, memesSentences.length));
-    return memesSentences[idx]
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1);
+    gMeme.selectedLineIdx--;
+    var removeElement = document.querySelector('.meme-line2')
+    if (removeElement) removeElement.remove();
+    // console.log(gMeme.selectedLineIdx);
+    // console.log(MEME);
 }
 
 
-function getImgIdx() {
-    let idx = Math.trunc(getRandomInt(0, gImages.length - 1));
-    return idx;
+
+
+
+///////////////////////////////////////////////////////////////////////
+
+
+
+
+function setLineText(textInput) {
+    gMeme.lines[gCurrLine].text = textInput;
+    gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
 }
 
-// function randomImage() {
-//     let idx = Math.trunc(getRandomInt(0, gImages.length - 1));
-//     // const image = `<img src="/meme-imgs-square/${idx}.jpg"`
-//     const image = `<img src="${gImages[idx].url}">`;
-//     return image
-//     // return memesSentences[idx]
-// }
+function setFontColor(val) {
+    gMeme.lines[gCurrLine].color = val;
+}
 
-// function createMemes(id) {
-//     let memes = [];
+function setStrokeColor(val) {
+    gMeme.lines[gCurrLine].strokeColor = val;
+}
 
-//     for (let i = 0; i < 1; i++) {
-//         memes.push(createMeme(id))
-//     }
-//     gMemes = memes;
-// }
+function setFontSizeInc() {
+    gMeme.lines[gCurrLine].size++;
+}
 
-// function createMeme(id) {
+function setFontSizeDec() {
+    gMeme.lines[gCurrLine].size--;
+}
 
-//     const meme = {
-//         selectedImgId: id.id,
-//         line: getRandomLine(),
-
-//         lines: [{
-//             size: 16,
-//             align: 'left',
-//             color: 'red'
-//         }]
-//     }
-// }
-
-
-
-
-
+function setLocation(pos) {
+    gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
+    gMeme.lines[gCurrLine].align = pos;
+    renderMeme(gMeme.selectedImgId);
+}
 
 function createImages() {
     var images = [];
@@ -116,14 +129,9 @@ function createImages() {
 function createImage() {
     return {
         id: makeId(),
-        url: gImageCounter++
-        // url: `/meme-imgs-square/${gImageCounter++}.jpg"`,
+        url: `img/${gImageCounter++}.jpg`,
         // keywords: ['funny', 'dog']
     }
-}
-
-function setImage(elImg) {
-    gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height);
 }
 
 function getImages() {
@@ -133,43 +141,6 @@ function getImages() {
 function getMeme() {
     return gMeme;
 }
-
-
-////////////// FOR UPLOAD /////////////////////////
-
-// function uploadImg() {
-//     const imgDataUrl = gElCanvas.toDataURL("image/jpeg");
-
-//     // A function to be called if request succeeds
-//     function onSuccess(uploadedImgUrl) {
-//         const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
-//         console.log(encodedUploadedImgUrl);
-//         document.querySelector('.user-msg').innerText = `Your photo is available here: ${uploadedImgUrl}`
-
-//         document.querySelector('.share-container').innerHTML = `
-//         <a class="btn" href="https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;">
-//            Share
-//         </a>`
-//     }
-
-//     doUploadImg(imgDataUrl, onSuccess);
-// }
-
-// function doUploadImg(imgDataUrl, onSuccess) {
-
-//     const formData = new FormData();
-//     formData.append('img', imgDataUrl)
-
-//     fetch('//ca-upload.com/here/upload.php', {
-//         method: 'POST',
-//         body: formData
-//     })
-//         .then(res => res.text())
-//         .then((url) => {
-//             console.log('Got back live url:', url);
-//             onSuccess(url)
-//         })
-//         .catch((err) => {
-//             console.error(err)
-//         })
-// }
+function getCurrLine() {
+    return gCurrLine;
+}

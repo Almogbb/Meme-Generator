@@ -38,6 +38,8 @@
 
 .btn{
     font-size: 1em;
-    
+    cursor: pointer;
+    border-radius: 15px;
+    padding: 6px;
 }
 
