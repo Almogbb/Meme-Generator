@@ -1,16 +1,4 @@
-*{
-    box-sizing: border-box;
-}
 
-body{
-    margin: 0;
-    background-color: lightpink;
-}
-
-header{
-    background-color: lightgreen;
-    grid-area: header;
-}
 
 main{
     grid-area: main;
@@ -19,8 +7,6 @@ footer{
     background-color: antiquewhite;
     grid-area: footer;
 }
-
-
 
 .grid-page{
     display: grid;
@@ -56,17 +42,6 @@ footer{
     width: 200px;
     height: 200px;
 }
-.image{
-    width: 100%;
-    border-radius: 15px;
-    cursor: pointer;
-}
-
-
-.hide{
-    visibility: hidden;
-}
-
 
 .edit-canvas{
     flex-basis: 50%;

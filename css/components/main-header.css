@@ -1,0 +1,22 @@
+
+header{
+    background-color: var(--clr1);
+    grid-area: header;
+    
+}
+
+.main-header{
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.gallery{
+    
+    background-color: var(--clr2);
+    color: var(--clr3);
+    font-size: 1.375em;
+    padding: 0.6em 0.5em;
+    height: 2.5em;
+    width:7.25em ;
+}
