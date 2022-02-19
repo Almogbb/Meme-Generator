@@ -10,65 +10,77 @@
 </head>
 
 <body onload="init()">
-
-    <section class="grid-page">
-
-        <header class="header-container ">
-            <div class="main-header main-layout flex space-between ">
-
-                <h1>Sprint 2</h1>
-                <div>
-
-                    <button class="btn gallery" onclick="onGallery()">Gallery</button>
-                    <a class="about" href="#">about</a>
+    <section class="container">
+        <div class="grid-page">
+            <header class="header-container">
+                <div class="main-header main-layout flex space-between ">
+                    <h1 class="logo">Meme Generator</h1>
+                    <ul class="header-btn-row">
+                        <li class="header-btn active gallery" onclick="onGallery()">Gallery</li>
+                    </ul>
                 </div>
-            </div>
-        </header>
+            </header>
 
-        <main class="main main-layout">
+            <main class="main main-layout">
+                <section class="edit-canvas">
+                    <div class="editor">
+                        <input name="INPUT" class="item1 meme-line-0 line" type="text" placeholder="Enter your line">
 
-            <div class="edit-canvas flex" style="display: none;">
-                <!-- style="display: none" -->
-                <div class="editor">
-                    <input name="INPUT" class="meme-line-0 line" type="text" placeholder="Enter your line">
+                        <div class="item2 btn-row">
+                            <button class="active btn btn1" onclick="onSwitchText()"><img class="btn-image-row"
+                                    src="ICONS/up-down.png"></button>
+                            <button class="active btn btn2" onclick="onAddLine()"><img class="btn-image-row"
+                                    src="ICONS/add.png"></button>
+                            <button class="active btn btn3" onclick="onClearCanvas()"><img class="btn-image-row"
+                                    src="ICONS/trash.png"></button>
+                        </div>
 
-                    <div class="btn-row">
-                        <button class="btn" onclick="onSwitchText()">Switch</button>
-                        <button class="btn" onclick="onAddLine()">Add Line</button>
-                        <button class="btn" onclick="removeLine()">Remove Line</button>
-                        <button class="btn" onclick="onClearCanvas()">Clear</button>
+                        <div class="item3 meme-tools">
+                            <input type="color" id="font-color" name="font-color"
+                                oninput="onFontColorChange(this.value)">
+                            <button class="active btn" onclick="onFontSizeInc()"><img class="btn-tools"
+                                    src="ICONS/increase font.png"></button>
+                            <button class="active btn" onclick="onFontSizeDec()"><img class="btn-tools"
+                                    src="ICONS/decrease font.png"></button>
+                            <button class="active btn" onclick="onTextLocation('right')"><img class="btn-tools"
+                                    src="ICONS/align-to-left.png"></button>
+                            <button class="active btn" onclick="onTextLocation('center')"><img class="btn-tools"
+                                    src="ICONS/center-text.png"></button>
+                            <button class="active btn" onclick="onTextLocation('left')"><img class="btn-tools"
+                                    src="ICONS/align-to-right.png"></button>
+                        </div>
+                        <div class="item5 ">
+                            <!-- <input type="file" class="own-image" name="image" onchange="onImgInput(event)"> -->
+                            <select onchange="onFontFamily(this.value)" class="font-family">
+                                <option class="arial" value="Arial">Arial</option>
+                                <option class="poppins" value="poppins">Poppins</option>
+                                <option class="impact" value="impact">Impact</option>
+                            </select>
+                        </div>
+                        <div class="social item4">
+                            <a class="active social-btn" href="#" onclick="onDownloadCanvas(this)"
+                                download="myphoto">Download</a>
+                            <div class="share-modal"></div>
+                            <a class="social-share share active social-btn" href="#" onclick="onShareCanvas()">Share</a>
+                        </div>
                     </div>
-
-                    <div class="meme-tools">
-                        <input type="color" name="font-color" oninput="onFontColorChange(this.value)">
-                        <button class="btn" onclick="onFontSizeInc()">bigger font</button>
-                        <button class="btn" onclick="onFontSizeDec()">smaller font</button>
-                        <button class="btn" onclick="onTextLocation('left')">left</button>
-                        <button class="btn" onclick="onTextLocation('center')">center</button>
-                        <button class="btn" onclick="onTextLocation('right')">right</button>
+                    <div class="canvas-container">
+                        <canvas class="my-canvas" height="700" width="700"></canvas>
                     </div>
-
-                </div>
-                <canvas class="my-canvas" height="700" width="700"></canvas>
-            </div>
-
-            <section class="gallery-container">
-
-                <!-- <input type="text" placeholder="search">
-                <button class="btn" onclick="randomMeme()">Quick Meme</button> -->
-                <section class="meme-images">
-
                 </section>
-            </section>
-        </main>
 
-        <footer class="main-footer"></footer>
+                <section class="gallery-container">
+                    <section class="meme-images">
 
-
-
+                    </section>
+                </section>
+            </main>
+        </div>
     </section>
+
     <script src="js/services/storage-service.js"></script>
     <script src="js/services/utils-service.js"></script>
+    <script src="js/services/upload-service.js"></script>
     <script src="js/services/meme-service.js"></script>
     <script src="js/meme-controller.js"></script>
     <script src="js/gallery-controller.js"></script>

@@ -13,26 +13,25 @@ function renderImages() {
     elDiv.innerHTML = strHTML.join('');
 }
 
-
 function onImgClick(id) {
-    const elGallery = document.querySelector('.gallery-container');
-    elGallery.style.display = 'none';
 
-    //to do clear placeholder
+    const elGallery = document.querySelector('.gallery-container');
+    elGallery.setAttribute("hidden", "hidden");
 
     const elEdit = document.querySelector('.edit-canvas');
-    elEdit.style.display = 'block'
+    elEdit.style.display = 'flex'
 
-    renderMeme(id)
+    // console.log('s');
+    resizeCanvas();
+    renderMeme(id);
 }
 
 function onGallery() {
     const elGallery = document.querySelector('.gallery-container');
-    elGallery.style.display = 'block';
+    elGallery.removeAttribute("hidden");
 
     const elEdit = document.querySelector('.edit-canvas');
-    elEdit.style.display = 'none'
+    elEdit.style.display = 'none';
 
     onClearCanvas();
-
 }

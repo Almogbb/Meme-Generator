@@ -1,73 +1,66 @@
 'use strict'
 
-const memesSentences = [
-    'I never eat falafel',
-    'DOMS DOMS EVERYWHERE',
-    'Stop Using i in for loops',
-    'Armed in knowledge',
-    'Js error "Unexpected String"',
-    'One does not simply write js',
-    'I want to have fun again!!',
-    'I want my BOBO',
-    'May the force be with you',
-    'I know JS',
-    'everyone',
-    'I like butter',
-    'But if we could',
-    'JS what is this?',
-    'I lost all my hobbies',
-];
-
-
 var gImageCounter = 1;
 var gImages;
-var gIsSecondLine = false;
-createImages()
+
 var gMeme = {
-    selectedImgId: 5,
+    selectedImgId: -1,
     selectedLineIdx: 0,
 
     lines: [{
-        text: 'I like butter',
-        size: 32,
-        lineWidth: 1,
-        align: 'center',
-        color: 'red',
-        font: 'Arial',
-        strokeColor: 'black',
-        location: { x: 250, y: 150 }
-    }]
-}
-const gCurrLine = gMeme.selectedLineIdx;
-
-/////////////////////////////////////////////////////////////////////////
-
-function getNewLine() {
-
-    gMeme.lines.length === 0 ? gMeme.selectedLineIdx++ : gMeme.selectedLineIdx === 0;
-    gMeme.lines.push({
-        text: 'I want my BOBO',
-        size: 32,
+        text: 'CSS all day',
+        size: 46,
         lineWidth: 1,
         align: 'center',
         color: 'black',
         font: 'Arial',
         strokeColor: 'black',
-        location: { x: 400, y: 400 }
+        location: { x: 370, y: 150 },
+        isDrag: false
+    }]
+}
+
+createImages()
+
+function isMemeClicked(clickedPos) {
+    const { location } = gMeme.lines[gMeme.selectedLineIdx];
+    const distance = Math.sqrt((location.x - clickedPos.x) ** 2 + (location.y - clickedPos.y) ** 2);
+    return distance <= gMeme.lines[gMeme.selectedLineIdx].size;
+}
+
+function setMemeDrag(isDrag) {
+    gMeme.isDrag = isDrag
+}
+
+function moveMeme(dx, dy) {
+    gMeme.lines[gMeme.selectedLineIdx].location.x += dx
+    gMeme.lines[gMeme.selectedLineIdx].location.y += dy
+}
+
+function getNewLine() {
+
+    gMeme.lines.push({
+        text: 'no Grid Layout for you',
+        size: 46,
+        lineWidth: 1,
+        align: 'center',
+        color: 'black',
+        font: 'Arial',
+        strokeColor: 'black',
+        location: { x: 400, y: 400 },
+        isDrag: false
     })
     gMeme.selectedLineIdx = gMeme.lines.length - 1;
-    gIsSecondLine = true
 }
 
 function removeLine() {
 
+    if (!gMeme.selectedLineIdx) return
     gMeme.lines.splice(gMeme.length - 1, 1);
     gMeme.selectedLineIdx--;
     var removeElement = document.querySelector('.meme-line-1');
     if (removeElement) removeElement.remove();
 }
-
-///////////////////////////////////////////////////////////////////////
 
 function setLineText(textInput) {
     gMeme.lines[gMeme.selectedLineIdx].text = textInput;
@@ -80,6 +73,10 @@ function setFontColor(val) {
 
 function setStrokeColor(val) {
     gMeme.lines[gMeme.selectedLineIdx].strokeColor = val;
+}
+
+function setFont(val) {
+    gMeme.lines[gMeme.selectedLineIdx].font = val;
 }
 
 function setFontSizeInc() {
@@ -99,7 +96,7 @@ function setLocation(pos) {
 function createImages() {
     var images = [];
 
-    for (let i = 0; i < 11; i++) {
+    for (let i = 0; i < 18; i++) {
         images.push(createImage())
     }
     gImages = images;
@@ -108,10 +105,17 @@ function createImages() {
 function createImage() {
     return {
         id: makeId(),
-        url: `img/${gImageCounter++}.jpg`,
-        // url: `../../img/${gImageCounter++}.jpg`,
-        // keywords: ['funny', 'dog']
+        url: `../img/${gImageCounter++}.jpg`
     }
+}
+
+function createMyUploadImg(img) {
+    var ID = makeId()
+    gImages.push({
+        id: ID,
+        url: img
+    });
+    gMeme.selectedImgId = ID;
 }
 
 function getImages() {
@@ -121,6 +125,4 @@ function getImages() {
 function getMeme() {
     return gMeme;
 }
-function getCurrLine() {
-    return gCurrLine;
-}
+
