@@ -21,7 +21,6 @@ function onImgClick(id) {
     const elEdit = document.querySelector('.edit-canvas');
     elEdit.style.display = 'flex'
 
-    // console.log('s');
     resizeCanvas();
     renderMeme(id);
 }
