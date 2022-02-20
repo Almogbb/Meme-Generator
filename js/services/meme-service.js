@@ -105,8 +105,8 @@ function createImages() {
 function createImage() {
     return {
         id: makeId(),
-        // url: `../../img/${gImageCounter++}.jpg`
-        url: `C:\Users\Almog\Dropbox\CaJan22-ExcerciseSubmission\Almog Ben Binyamin\Day29-30-Sprint2\Delivery3 - Saturday 2200\img/${gImageCounter++}.jpg`
+        url: `../../img/${gImageCounter++}.jpg`
+        // url: `C:\Users\Almog\Dropbox\CaJan22-ExcerciseSubmission\Almog Ben Binyamin\Day29-30-Sprint2\Delivery3 - Saturday 2200\img/${gImageCounter++}.jpg`
     }
 }
 
