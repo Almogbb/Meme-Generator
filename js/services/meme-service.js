@@ -16,7 +16,7 @@ var gMeme = {
         font: 'Arial',
         strokeColor: 'black',
         location: { x: 370, y: 150 },
-        isDrag: false
+        isDrag: false,
     }]
 }
 
@@ -53,14 +53,14 @@ function getNewLine() {
     gMeme.selectedLineIdx = gMeme.lines.length - 1;
 }
 
-function removeLine() {
+// function removeLine(removeLine) {
 
-    if (!gMeme.selectedLineIdx) return
-    gMeme.lines.splice(gMeme.length - 1, 1);
-    gMeme.selectedLineIdx--;
-    var removeElement = document.querySelector('.meme-line-1');
-    if (removeElement) removeElement.remove();
-}
+//     if (!gMeme.selectedLineIdx) return
+//     gMeme.lines.splice(gMeme.length - 1, 1);
+//     gMeme.selectedLineIdx--;
+//     // var removeElement = document.querySelector('.meme-line-1');
+//     if (removeElement) removeElement.remove();
+// }
 
 function setLineText(textInput) {
     gMeme.lines[gMeme.selectedLineIdx].text = textInput;
@@ -105,8 +105,7 @@ function createImages() {
 function createImage() {
     return {
         id: makeId(),
-        url: `../../img/${gImageCounter++}.jpg`
-        // url: `C:\Users\Almog\Dropbox\CaJan22-ExcerciseSubmission\Almog Ben Binyamin\Day29-30-Sprint2\Delivery3 - Saturday 2200\img/${gImageCounter++}.jpg`
+        url: `img/${gImageCounter++}.jpg`
     }
 }
 
